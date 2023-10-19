@@ -47,6 +47,7 @@ const DataTable = (props) => {
         selectableRows: 'none', // Disable row selection
         responsive: 'standard', // Enable responsive design
         download: false, // Disable download options
+        print: false, // Disable print option
     };
     return (
         <Accordion key={data.record.key.origin} TransitionProps={{ unmountOnExit: true }} >
