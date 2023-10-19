@@ -47,7 +47,7 @@ const Home = () => {
     Promise.all(
       urls.map((url) =>
         axios
-          .post('http://localhost:4000/crux/report', { url: url.trim() })
+          .post('https://crux-api.onrender.com/crux/report', { url: url.trim() })
           .then((res) => res.data)
           .catch((error) => {
             console.error('Axios Error:', error);
