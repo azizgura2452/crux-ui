@@ -20,7 +20,11 @@ const Home = () => {
   const { reportData, loading, error, fetchReportData } = useFetchReportData(); // Use the custom hook
 
   const handleInputChange = (e) => {
-    setInputUrl(e.target.value);
+    const newInputUrl = e.target.value;
+    setInputUrl(newInputUrl);
+    if (invalidUrl) {
+      setInvalidUrl(false); // Reset the invalidUrl state when input changes from invalid to valid
+    }
   };
 
   const handleSubmit = (event) => {
