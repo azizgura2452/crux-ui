@@ -4,7 +4,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import '../assets'
 import MUIDataTable from 'mui-datatables';
 import { convertToTitleCase } from '../utils';
-import PieChart from './PieChart';
 import PieChartWidget from './PieChart';
 
 const DataTable = (props) => {
@@ -81,7 +80,7 @@ const DataTable = (props) => {
                         const poorRange = `${data.record.metrics[metricName].histogram[2].start}ms+`
 
                         return (
-                            <Grid item xs={12} md={4}>
+                            <Grid item xs={12} md={4} key={metricName}>
                                 <center>
                                     <PieChartWidget
                                         metricName={convertToTitleCase(metricName)}

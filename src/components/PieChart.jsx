@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
-import { convertToTitleCase } from '../utils';
 import { Typography } from '@mui/material';
 
 const sizing = {
@@ -13,9 +12,9 @@ const sizing = {
 const PieChartWidget = (props) => {
     const { metricName, good, medium, poor, goodRange, mediumRange, poorRange } = props;
     const data = [
-        { label: `Good (${goodRange})`, value: good, color: '#0cce6b', range: goodRange },
-        { label: `Needs Improvement (${mediumRange})`, value: medium, color: '#ffa400', range: mediumRange },
-        { label: `Poor (${poorRange})`, value: poor, color: '#ff4e42', range: poorRange }
+        { label: `Good (${goodRange})`, value: Number(good), color: '#0cce6b', range: goodRange },
+        { label: `Needs Improvement (${mediumRange})`, value: Number(medium), color: '#ffa400', range: mediumRange },
+        { label: `Poor (${poorRange})`, value: Number(poor), color: '#ff4e42', range: poorRange }
     ];
 
     return (
@@ -37,9 +36,9 @@ const PieChartWidget = (props) => {
                 }}
                 {...sizing}
             />
-            <p>
-                <Typography variant='body1'><center><strong>{metricName}</strong></center></Typography>
-            </p>
+            <Typography variant='body1' mt={1} sx={{ textAlign: 'center', fontWeight: 'bold'}}>
+                {metricName}
+            </Typography>
         </>
     );
 }

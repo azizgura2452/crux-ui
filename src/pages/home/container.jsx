@@ -3,7 +3,6 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import axios from 'axios';
 import {
   CircularProgress,
   FormHelperText,
@@ -12,14 +11,13 @@ import {
 } from '@mui/material';
 import DataTable from '../../components/DataTable';
 import { REGEX_WEBSITE } from '../../utils';
-import '../../assets'
+import '../../assets';
+import useFetchReportData from '../../hooks/FetchReportHook';
 
 const Home = () => {
   const [inputUrl, setInputUrl] = useState('');
-  const [reportData, setReportData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
   const [invalidUrl, setInvalidUrl] = useState(false);
+  const { reportData, loading, error, fetchReportData } = useFetchReportData(); // Use the custom hook
 
   const handleInputChange = (e) => {
     setInputUrl(e.target.value);
@@ -28,41 +26,11 @@ const Home = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const urls = inputUrl.split(',');
-    const isValid = urls.every(url => {
-      return REGEX_WEBSITE.test(url.trim()); // Use .test on the regular expression
-    });
+    const isValid = urls.every(url => REGEX_WEBSITE.test(url.trim()));
     if (!isValid)
       setInvalidUrl(!invalidUrl);
     else if (inputUrl && inputUrl !== '')
-      getReportData();
-  };
-
-
-  const getReportData = () => {
-    setLoading(true);
-    setReportData([]);
-    setError(''); // Reset the error
-
-    const urls = inputUrl.split(',');
-    Promise.all(
-      urls.map((url) =>
-        axios
-          .post('https://crux-api.onrender.com/crux/report', { url: url.trim() })
-          .then((res) => res.data)
-          .catch((error) => {
-            console.error('Axios Error:', error);
-            return { error: true };
-          })
-      )
-    )
-      .then((results) => {
-        setReportData(results);
-        setLoading(false);
-        setInvalidUrl(false)
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+      fetchReportData(urls);
   };
 
   return (
