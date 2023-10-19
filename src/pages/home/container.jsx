@@ -54,7 +54,7 @@ const Home = () => {
               helperText={invalidUrl ? 'Please enter valid URL' : null}
             />
             <FormHelperText>
-              {!invalidUrl ? 'Please use comma (,) separated URL(s)' : ''}
+              {!invalidUrl ? 'Please enter comma (,) separated URL(s)' : ''}
             </FormHelperText>
             <Button variant="contained" color="primary" type='submit'>
               <Typography variant='button'>SUBMIT</Typography>
