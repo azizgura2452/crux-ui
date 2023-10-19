@@ -9,8 +9,8 @@
 # After the app has started go to http://localhost:3000
 
 # Deployed App Detail
-# UI: https://crux-ui.onrender.com
-# Server: https://crux-api.onrender.com 
+UI: https://crux-ui.onrender.com
+Server: https://crux-api.onrender.com 
 
 ![screencapture-localhost-3000-2023-10-19-15_55_57](https://github.com/azizgura2452/crux-ui/assets/22236935/91bf34a9-bc38-4637-8429-67389497a83d)
 
